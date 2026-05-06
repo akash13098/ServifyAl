@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+<<<<<<< HEAD
 
 
 from django.contrib import admin
@@ -23,3 +24,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('users.urls')),
 ]
+=======
+from django.urls import path, include
+
+urlpatterns = [
+    path('api/accounts/', include('accounts.urls')),
+    path('api/services/', include('services.urls')),
+    path('api/providers/', include('providers.urls')),
+]
+>>>>>>> origin/feature/akash/backend

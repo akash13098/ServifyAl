@@ -43,8 +43,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'users',
+
+     'rest_framework',
+    'django_filters',
+    'accounts',
+    'providers',
+    'services',
+    'bookings',
+    'notifications',
+
 ]
 
 MIDDLEWARE = [
@@ -97,6 +107,7 @@ WSGI_APPLICATION = 'servify_backend.wsgi.application'
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 DATABASES = {
+
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv("DB_NAME"),
@@ -104,7 +115,17 @@ DATABASES = {
         'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': os.getenv("DB_HOST"),
         'PORT': os.getenv("DB_PORT"),
+
+     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'servifyai_db',
+        'USER': 'servifyai_user',
+        'PASSWORD': 'Strong@123',
+        'HOST': '192.168.0.253',
+        'PORT': '3306',
+
     }
+}
 }
 
 
@@ -148,9 +169,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
+
 # /////////////////////////////////////////////////////////////
 
 AUTH_USER_MODEL = 'users.User'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -159,5 +182,19 @@ REST_FRAMEWORK = {
 }
 
 
+AUTH_USER_MODEL = 'accounts.User'
 
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'jack19289191@gmail.com'
+EMAIL_HOST_PASSWORD = 'aryr cvld ronh uqtq'
 
